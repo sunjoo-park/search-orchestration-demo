@@ -13,10 +13,10 @@ def main(host_addr):
     channel.queue_declare(queue='hello')
 
     def callback(ch, method, properties, body):
-        job_url = f"{jenkins_url}/job/{target_job_name}"
+        job_url = f"{jenkins_url}job/{target_job_name}"
         job_bulid_url = f"{job_url}/buildWithParameters"
-        print(job_bulid_url)
-        print(" [x] Received %r" % body.decode())
+        print(job_bulid_url, flush=True)
+        print(" [x] Received %r" % body.decode(), flush=True)
 
     channel.basic_consume(queue='hello', on_message_callback=callback, auto_ack=True)
     print(' [*] Waiting for messages. To exit press CTRL+C')
