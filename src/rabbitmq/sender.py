@@ -2,7 +2,7 @@
 import pika
 from datetime import datetime
 
-host_addr = "192.168.50.139"
+host_addr = "127.0.0.1"
 connection = pika.BlockingConnection(
     pika.ConnectionParameters(host=host_addr))
 channel = connection.channel()
