@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  search-request-consumer:
+    build:
+      context: ./
+      network: host
+      dockerfile: Dockerfile.consumer
+    image: all4dich/search-request-consumer
+  search-request-sender:
+    build:
+      context: ./
+      network: host
+      dockerfile: Dockerfile.sender
+    image: all4dich/search-request-sender
