@@ -13,7 +13,7 @@ def main():
     arg_parser.add_argument("--jenkins_password", required=True)
     arg_parser.add_argument("--target_job_name", required=True)
     arg_parser.add_argument("--queue_name", required=True)
-    arg_parser.add_argument("--message_server_host", default="127.0.0.1")
+    arg_parser.add_argument("--message_server_host", required=True)
     args = arg_parser.parse_args()
 
     jenkins_url: str = args.jenkins_url
