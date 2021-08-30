@@ -14,6 +14,8 @@ def main():
     arg_parser.add_argument("--target_job_name", required=True)
     arg_parser.add_argument("--queue_name", required=True)
     arg_parser.add_argument("--message_server_host", required=True)
+    arg_parser.add_argument("--message_server_user", default="guest")
+    arg_parser.add_argument("--message_server_pass", default="guest")
     args = arg_parser.parse_args()
 
     jenkins_url: str = args.jenkins_url
@@ -23,7 +25,9 @@ def main():
     queue_name: str = args.queue_name
 
     host_addr = args.message_server_host
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=host_addr))
+
+    credentials = pika.PlainCredentials(args.message_server_user, args.message_server_pass)
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=host_addr, credentials=credentials))
     channel = connection.channel()
     channel.queue_declare(queue=queue_name)
 
