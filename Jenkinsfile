@@ -9,6 +9,7 @@ pipeline {
             steps {
                 sh 'ls'
                 sh 'hostname'
+                sh 'env|sort'
             }
         }
     }
