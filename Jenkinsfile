@@ -7,16 +7,22 @@ pipeline {
     stages {
         stage('Get methods') {
             steps {
-                sh 'ls'
-                sh 'hostname'
-                sh 'env|sort'
                 script {
-                    pullRequest.addLabel('Build Passing')
-                    //pullRequest.review('APPROVE')
-                    pullRequest.comment('This PR is highly illogical..') 
+                    sh 'env|sort'
                 }
             }
         }
     }
-}
 
+    post {
+
+        always {
+            script {
+                    pullRequest.createStatus(status: 'error',
+                         description: 'Failed',
+                         targetUrl: "${env.BUILD_URL}")
+            }
+        }
+
+    }
+}
