@@ -10,7 +10,9 @@ pipeline {
                 sh 'ls'
                 sh 'hostname'
                 sh 'env|sort'
-                pullRequest.addLabel('Build Passing')
+                script {
+                    pullRequest.addLabel('Build Passing')
+                }
             }
         }
     }
