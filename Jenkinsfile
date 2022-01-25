@@ -12,6 +12,8 @@ pipeline {
                 sh 'env|sort'
                 script {
                     pullRequest.addLabel('Build Passing')
+                    //pullRequest.review('APPROVE')
+                    pullRequest.comment('This PR is highly illogical..') 
                 }
             }
         }
