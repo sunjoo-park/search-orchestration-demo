@@ -9,12 +9,13 @@ pipeline {
             steps {
                 script {
                     sh 'env|sort'
-                    echo pullRequest.title
-                    echo pullRequest.body
-                    echo pullRequest.state
-                    echo pullRequest.labels[0]
-                    pullRequest.comment("Ttes Commenv " + env.JENKINS_URL)
-                    pullRequest.review('APPROVE')
+                    if(env.CHANGE_ID) {
+                        echo pullRequest.title
+                        echo pullRequest.body
+                        echo pullRequest.state
+                        echo pullRequest.labels[0]
+                        pullRequest.comment("Ttes Commenv " + env.JENKINS_URL)
+                    }
                 }
             }
         }
@@ -28,7 +29,9 @@ pipeline {
                          description: 'Failed',
                          targetUrl: "${env.BUILD_URL}")
                          */
+                if(env.CHANGE_ID) {
                     pullRequest.comment("Post Section")
+                }
             }
         }
 
