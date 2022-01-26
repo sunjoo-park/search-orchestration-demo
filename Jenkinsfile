@@ -21,14 +21,14 @@ pipeline {
         }
     }
     post {
-
-        always {
+        success {
             script {
             /*
                     pullRequest.createStatus(status: 'error',
                          description: 'Failed',
                          targetUrl: "${env.BUILD_URL}")
                          */
+                echo "post: success"
                 if(env.CHANGE_ID) {
                     pullRequest.comment("Post Section")
                 }
