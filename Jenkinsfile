@@ -14,6 +14,7 @@ pipeline {
                     echo pullRequest.state
                     echo pullRequest.labels[0]
                     pullRequest.comment("Ttes Commenv " + env.JENKINS_URL)
+                    pullRequest.review('APPROVE')
                 }
             }
         }
