@@ -9,23 +9,25 @@ pipeline {
             steps {
                 script {
                     sh 'env|sort'
-                    def commitId = '567e7110ac0a3de2053c22001627974703fa376f'
-                    def path = 'Jenkinsfile'
-                    def lineNumber = 1
-                    def body = 'The review comment'
-                    def comment = pullRequest.reviewComment(commitId, path, lineNumber, body)
+                    echo pullRequest.title
+                    echo pullRequest.body
+                    echo pullRequest.state
+                    echo pullRequest.labels[0]
+                    pullRequest.comment("Ttes Commenv " + env.JENKINS_URL)
                 }
             }
         }
     }
-
     post {
 
         always {
             script {
+            /*
                     pullRequest.createStatus(status: 'error',
                          description: 'Failed',
                          targetUrl: "${env.BUILD_URL}")
+                         */
+                    pullRequest.comment("Post Section")
             }
         }
 
