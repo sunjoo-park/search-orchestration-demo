@@ -31,6 +31,8 @@ pipeline {
                 echo "post: success"
                 if(env.CHANGE_ID) {
                     pullRequest.comment("Post Section")
+                    pullRequest.merge(commitTitle: 'Merge from test action', commitMessage: 'Merge Test', mergeMethod: 'squash')
+                    // merge_method	string	body	Merge method to use. Possible values are merge, squash or rebase. Default is merge.
                 }
             }
         }
